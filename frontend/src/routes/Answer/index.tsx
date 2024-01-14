@@ -1,5 +1,6 @@
+import { useEffect, useState, useRef } from 'react'
 import { Text, Box, Icon } from "@chakra-ui/react";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
 
 import QuestionText from "../../features/QuestionText";
@@ -9,6 +10,7 @@ function Answer() {
     const message = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     const navigate = useNavigate()
     const location = useLocation();
+    const selectedChoice = location.state.selectedChoice;
     const questionNumber = location.state.questionNumber
     function onClickNextQuestion() {
         navigate('/question', {state: {'questionNumber': questionNumber}})

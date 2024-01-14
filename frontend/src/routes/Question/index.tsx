@@ -12,8 +12,9 @@ function Question() {
     const location = useLocation();
     const beforeQuestionNumber = location.state.questionNumber;
     const [questionNumber, setQuestionNumber] = useState<number>(0)
+    const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
     function onClickAnswer() {
-        navigate('/Answer', {state: {'questionNumber': questionNumber}})
+        navigate('/Answer', {state: {'selectedChoice': selectedChoice, 'questionNumber': questionNumber}})
     }
     useEffect(() => {
         if (questionNumber == location.state.numberOfQuestion){
@@ -39,7 +40,7 @@ function Question() {
     return (
         <div className="home_box">
             <QuestionText question={"aaaaaaaaaaa"} number={questionNumber}/>
-            <QuestionChoice choices={["a","a","a","a"]}/>
+            <QuestionChoice choices={["a","a","a","a"]} onChoiceSelect={handleChoiceSelect}/>
 
             <Icon
                 onClick={onClickAnswer} 
