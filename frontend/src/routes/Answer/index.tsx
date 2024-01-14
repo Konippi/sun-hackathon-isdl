@@ -2,22 +2,20 @@ import { useEffect, useState } from 'react'
 import { Button, HStack, VStack, Text, Box, Icon } from "@chakra-ui/react";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
+import { Problem } from "../Question";
 
 function Answer() {
     const navigate = useNavigate()
     const location = useLocation();
-    const question: string = location.state.problem.question;
-    const choices: string[] = location.state.problem.choices;
+    const problem: Problem = location.state.problem;
     const selectedChoice = location.state.selectedChoice;
-    const answerIndex: number = location.state.problem.answer.answerIndex;
     const questionNumber = location.state.questionNumber;
-    const explanation: string = location.state.problem.answer.explanation;
     const [answer, setAnswer] = useState('');
     const [answerColor, setAnswerColor] = useState("black");
     const [colorScheme, setColorScheme] = useState(["black","black","black","black"])
 
     const newColorScheme = colorScheme.map((x, i) => {
-        if (i === answerIndex) {
+        if (i === problem.answer.choiceIndex) {
             return "green";
         }else if (i === selectedChoice) { 
             return "red";
@@ -31,7 +29,7 @@ function Answer() {
     }
 
     useEffect(() => {
-        if (selectedChoice == answerIndex){
+        if (selectedChoice == problem.answer.choiceIndex){
             setAnswer("Correct");
             setAnswerColor("green");
         }
@@ -52,11 +50,11 @@ function Answer() {
                     <Text fontSize={"large"} color={answerColor}>{answer}</Text>
                 </HStack>
                 </Box>
-                <Text fontSize="xl" textAlign={"start"}>{question}</Text>
+                <Text fontSize="xl" textAlign={"start"}>{problem.question}</Text>
             </VStack>
 
             <VStack spacing={4} align="center" pt={5}>
-                {choices.map((choice, index) => (
+                {problem.choices.map((choice, index) => (
                     <Button key={index} colorScheme={colorScheme[index]} variant="outline" w="80%" borderRadius={30}>
                         <Text w={250} textAlign={"start"}>{choice}</Text>
                     </Button>
@@ -65,7 +63,7 @@ function Answer() {
             
             <Text my={5} textAlign="left" fontSize='4xl' color="#000000">Explanation</Text> 
             <Box px={5} justifyContent='center' alignItems='center'>
-                <Text textAlign="center" fontSize='2xl' color="#000000">{explanation}</Text>
+                <Text textAlign="center" fontSize='2xl' color="#000000">{problem.answer.explanation}</Text>
             </Box>
 
             <Icon
