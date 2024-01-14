@@ -5,6 +5,7 @@ import Footer from "./features/Footer";
 import Home from "./routes/Home";
 import Answer from "./routes/Answer";
 import Question from "./routes/Question";
+import Completion from "./routes/Completion";
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/answer' element={<Answer />}/>
           <Route path='/question' element={<Question />}/>
+          <Route path='/completion' element={<Completion />}/>
         </Routes>
       </BrowserRouter>
       <Footer/>
