@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Icon } from "@chakra-ui/react";
+import { Center, Icon, Spinner } from "@chakra-ui/react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
 import axios from 'axios';
@@ -23,7 +23,7 @@ function Question() {
     const numberOfQuestion = location.state.numberOfQuestion;
     const [questionNumber, setQuestionNumber] = useState<number>(beforeQuestionNumber);
     const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
-    const [problem, setProblem] = useState<Problem>();
+    const [problem, setProblem] = useState<Problem | undefined>(undefined);
     
     function onClickAnswer() {
         navigate('/Answer', {state: {'problem': problem, 'questionNumber': questionNumber, 'selectedChoice': selectedChoice, 'numberOfQuestion': numberOfQuestion}})
@@ -59,6 +59,18 @@ function Question() {
         setSelectedChoice(index);
     };
     return (
+        (problem == undefined) ? 
+        <Center h="100vh">
+            <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='orange.500'
+            size='xl'
+            
+        /> 
+        </Center>
+        :
         <div className="home_box">
             <QuestionText question={problem?.question} number={questionNumber}/>
             <QuestionChoice choices={problem?.choices ?? []} onChoiceSelect={handleChoiceSelect}/>

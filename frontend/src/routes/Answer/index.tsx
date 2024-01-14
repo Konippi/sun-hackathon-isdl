@@ -43,7 +43,7 @@ function Answer() {
     }, []);
     
     return (
-        <div className="home_box">
+        <Box className="home_box">
             <VStack align="center" spacing={2} pr={5} pl={5}>
                 <Box marginRight={"auto"}>
                 <HStack spacing={4} align="center" pt={5}>
@@ -56,15 +56,15 @@ function Answer() {
 
             <VStack spacing={4} align="center" pt={5}>
                 {problem.choices.map((choice, index) => (
-                    <Button key={index} colorScheme={colorScheme[index]} variant="outline" w="80%" borderRadius={30}>
-                        <Text w={250} textAlign={"start"}>{choice}</Text>
+                    <Button maxH={110} h={"100%"} key={index} colorScheme={colorScheme[index]} variant="outline" w="80%" borderRadius={30} whiteSpace="unset">
+                        <Text overflowWrap="break-word" margin={3} textAlign={"start"}>{choice}</Text>
                     </Button>
                 ))}
             </VStack>
             
-            <Text my={5} textAlign="left" fontSize='4xl' color="#000000">Explanation</Text> 
+            <Text mt={5} textAlign="left" fontSize='3xl' color="#252525" padding={4}>Explanation</Text> 
             <Box px={5} justifyContent='center' alignItems='center'>
-                <Text textAlign="center" fontSize='2xl' color="#000000">{problem.answer.explanation}</Text>
+                <Text textAlign="start" fontSize='xl' color="#252525">{problem.answer.explanation}</Text>
             </Box>
 
             <Icon
@@ -85,7 +85,7 @@ function Answer() {
                     bgColor: "blue.200",
                 }}
             />
-        </div>
+        </Box>
     );
 }
 
