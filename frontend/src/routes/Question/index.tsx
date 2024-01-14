@@ -11,6 +11,7 @@ function Question() {
     const navigate = useNavigate();
     const location = useLocation();
     const questionNumber = useRef<number>(0);
+    const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
     // const [questionNumber, setQuestionNumber] = useState(0);
     function onClickAnswer() {
         navigate('/Answer', {state: {}})
@@ -26,10 +27,15 @@ function Question() {
         //     console.log(response)
         // }
     }, []);
+    const handleChoiceSelect = (choice: string) => {
+        setSelectedChoice(choice);
+        console.log("routes")
+        console.log(choice)
+    };
     return (
         <div className="home_box">
             <QuestionText question={"aaaaaaaaaaa"} number={questionNumber.current}/>
-            <QuestionChoice choices={["a","a","a","a"]}/>
+            <QuestionChoice choices={["a","a","a","a"]} onChoiceSelect={handleChoiceSelect}/>
 
             <Icon
                 onClick={onClickAnswer} 
