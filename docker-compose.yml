@@ -11,6 +11,9 @@ services:
       - 5173:5173
     volumes:
       - ./frontend:/usr/src/app
-    command: sh -c 'yarn install && yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4 && yarn dev'
+    command: sh -c 'yarn install &&
+     yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4 &&
+     yarn add react-router-dom@6 &&
+     yarn dev'
   
 

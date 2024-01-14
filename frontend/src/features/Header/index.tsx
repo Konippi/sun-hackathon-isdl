@@ -1,15 +1,23 @@
-import "./Header.css"
+import {
+    Box,
+    Flex,
+    Container,
+    Heading,
+} from '@chakra-ui/react';
+
+// import "./Header.css"
 
 function Header() {
     return (
-        <nav className="nav">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/questionnare">Rating</a></li>
-                {/* <li><a href="/result">Result</a></li>
-                <li><a href="/admin">Admin</a></li> */}
-            </ul>
-        </nav>
+        <Box px={4} bgColor="#F6AD55" w='100%'>
+            <Container maxW="container.lg">
+                <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
+                    <Heading as='h1' fontSize="2xl" cursor="pointer">
+                        ISDL-support
+                    </Heading>
+                </Flex>
+            </Container>
+        </Box>
     )
 }
 
