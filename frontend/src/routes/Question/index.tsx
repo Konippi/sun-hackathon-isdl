@@ -14,7 +14,7 @@ function Question() {
     const [questionNumber, setQuestionNumber] = useState<number>(0)
     const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
     function onClickAnswer() {
-        navigate('/Answer', {state: {'selectedChoice': selectedChoice, 'questionNumber': questionNumber}})
+        navigate('/Answer', {state: {'question': "aaaaaa", 'selectedChoice': selectedChoice,'answerIndex': 0, 'questionNumber': questionNumber}})
     }
     useEffect(() => {
         if (questionNumber == location.state.numberOfQuestion){
