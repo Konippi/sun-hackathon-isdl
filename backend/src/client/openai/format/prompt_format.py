@@ -5,8 +5,6 @@ sys.path.insert(0, os.getcwd())
 
 import re
 
-import yaml
-
 
 class PromptFormat:
     def __init__(self, genre: str, n: int):
