@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
 
 function Answer() {
-    const message = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     const navigate = useNavigate()
     const location = useLocation();
     const question = location.state.question;
@@ -12,6 +11,7 @@ function Answer() {
     const selectedChoice = location.state.selectedChoice;
     const answerIndex = location.state.answerIndex;
     const questionNumber = location.state.questionNumber;
+    const explanation = location.state.explanation;
     const [answer, setAnswer] = useState('');
     const [answerColor, setAnswerColor] = useState("black");
     const [colorScheme, setColorScheme] = useState(["black","black","black","black"])
@@ -65,7 +65,7 @@ function Answer() {
             
             <Text my={5} textAlign="left" fontSize='4xl' color="#000000">Explanation</Text> 
             <Box px={5} justifyContent='center' alignItems='center'>
-                <Text textAlign="center" fontSize='2xl' color="#000000">{message}</Text>
+                <Text textAlign="center" fontSize='2xl' color="#000000">{explanation}</Text>
             </Box>
 
             <Icon
