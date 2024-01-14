@@ -1,0 +1,16 @@
+version: '3'
+services: 
+  frontend:
+    container_name: sun-frontend
+    build: ./frontend
+    environment:
+      - NODE_ENV=development
+    tty: true
+    stdin_open: true
+    ports:
+      - 5173:5173
+    volumes:
+      - ./frontend:/usr/src/app
+    command: sh -c 'yarn install && yarn dev'
+  
+
