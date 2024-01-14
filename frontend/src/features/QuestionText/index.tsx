@@ -4,7 +4,7 @@ import { Box, Text, VStack } from '@chakra-ui/react';
 //import { useNavigate } from "react-router-dom";
 
 interface QuestionTextProps {
-  question: string,
+  question: string | undefined,
   number: number;
 }
 

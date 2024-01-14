@@ -24,15 +24,14 @@ function Question() {
     const [problem, setProblem] = useState<Problem>();
     
     function onClickAnswer() {
-        navigate('/Answer', {state: {'explanation': problem!.answer.explanation,'question': problem!.question, 'selectedChoice': selectedChoice,'answerIndex': problem!.answer.choiceIndex, 'questionNumber': questionNumber}})
+        navigate('/Answer', {state: {'problem': problem, 'questionNumber': questionNumber, 'selectedChoice': selectedChoice}})
     }
     useEffect(() => {
-        if (questionNumber == location.state.numberOfQuestion){
+        console.log(location.state.numberOfQuestion)
+        if (questionNumber == location.state.genre){
             navigate('/Completion')
         }
         setQuestionNumber(beforeQuestionNumber + 1);
-        console.log(location.state.genre)
-        console.log(location.state.numberOfQuestion)
         
         // const form = new FormData();
         // form.append('genre', location.state.genre);
@@ -44,12 +43,14 @@ function Question() {
                     question: problem.question,
                     choices: problem.choices,
                     answer: {
-                        choiceIndex: problem.choice_index, 
-                        explanation: problem.explanation
+                        choiceIndex: problem.answer.choice_index,
+                        explanation: problem.answer.explanation
                     }
                 }
             )
 
+        }).catch((error) => {
+            console.log(error)
         })
         
     }, []);
@@ -60,8 +61,8 @@ function Question() {
     };
     return (
         <div className="home_box">
-            <QuestionText question={problem!.question} number={questionNumber}/>
-            <QuestionChoice choices={problem!.choices} onChoiceSelect={handleChoiceSelect}/>
+            <QuestionText question={problem?.question} number={questionNumber}/>
+            <QuestionChoice choices={problem?.choices ?? []} onChoiceSelect={handleChoiceSelect}/>
 
             <Icon
                 onClick={onClickAnswer} 
