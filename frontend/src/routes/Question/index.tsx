@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { Icon } from "@chakra-ui/react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
@@ -10,15 +10,20 @@ import QuestionChoice from "../../features/Choice";
 function Question() {
     const navigate = useNavigate();
     const location = useLocation();
-    const questionNumber = useRef<number>(0);
+    const beforeQuestionNumber = location.state.questionNumber;
+    const [questionNumber, setQuestionNumber] = useState<number>(0)
     const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
-    // const [questionNumber, setQuestionNumber] = useState(0);
     function onClickAnswer() {
-        navigate('/Answer', {state: {selectedChoice}})
+        navigate('/Answer', {state: {'selectedChoice': selectedChoice, 'questionNumber': questionNumber}})
     }
     useEffect(() => {
-        questionNumber.current = location.state.questionNumber + 1;
-        console.log(questionNumber.current)
+        if (questionNumber == location.state.numberOfQuestion){
+            navigate('/Completion')
+        }
+        setQuestionNumber(beforeQuestionNumber + 1);
+        console.log(location.state.genre)
+        console.log(location.state.numberOfQuestion)
+        
         // const form = new FormData();
         // form.append('genre', location.state.genre);
         // const response = axios.post("http://localhost:3000/question", form)
@@ -34,7 +39,7 @@ function Question() {
     };
     return (
         <div className="home_box">
-            <QuestionText question={"aaaaaaaaaaa"} number={questionNumber.current}/>
+            <QuestionText question={"aaaaaaaaaaa"} number={questionNumber}/>
             <QuestionChoice choices={["a","a","a","a"]} onChoiceSelect={handleChoiceSelect}/>
 
             <Icon
