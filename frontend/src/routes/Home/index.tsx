@@ -8,7 +8,7 @@ import './Home.css'
 function Home() {
     const [genre, setGenre] = useState('sample')
     const [numberOfQuestion, setNumberOfQuestion] = useState('3')
-    const questionNumber = useState(0);
+    let questionNumber = 0;
     const navigate = useNavigate()
     function onClickHome() {
         navigate('/question', {state: {'genre': genre, 'numberOfQuestion': numberOfQuestion, 'questionNumber': questionNumber}})

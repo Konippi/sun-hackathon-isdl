@@ -3,7 +3,8 @@ import { Icon } from "@chakra-ui/react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
 // import axios from 'axios';
-// import QuestionText from "../../features/QuestionText";
+import QuestionText from "../../features/QuestionText";
+import QuestionChoice from "../../features/Choice";
 
 
 function Question() {
@@ -12,12 +13,11 @@ function Question() {
     const questionNumber = useRef<number>(0);
     // const [questionNumber, setQuestionNumber] = useState(0);
     function onClickAnswer() {
-        navigate('/Answer')
+        navigate('/Answer', {state: {}})
     }
     useEffect(() => {
         questionNumber.current = location.state.questionNumber + 1;
         console.log(questionNumber.current)
-        console.log(location.state.questionNumber)
         // const form = new FormData();
         // form.append('genre', location.state.genre);
         // const response = axios.post("http://localhost:3000/question", form)
@@ -28,7 +28,8 @@ function Question() {
     }, []);
     return (
         <div className="home_box">
-            {/* <QuestionText /> */}
+            <QuestionText question={"aaaaaaaaaaa"} number={questionNumber.current}/>
+            <QuestionChoice choices={["a","a","a","a"]}/>
 
             <Icon
                 onClick={onClickAnswer} 
