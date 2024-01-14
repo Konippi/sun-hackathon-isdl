@@ -2,19 +2,29 @@ import { useEffect, useState } from 'react'
 import { Icon } from "@chakra-ui/react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { HiArrowRight } from "react-icons/hi";
-// import axios from 'axios';
+import axios from 'axios';
 import QuestionText from "../../features/QuestionText";
 import QuestionChoice from "../../features/Choice";
 
 
 function Question() {
+    type Problem = {
+        question: string,
+        choices: string[],
+        answer: {
+            choiceIndex: number,
+            explanation: string
+        }
+    } 
     const navigate = useNavigate();
     const location = useLocation();
     const beforeQuestionNumber = location.state.questionNumber;
-    const [questionNumber, setQuestionNumber] = useState<number>(0)
+    const [questionNumber, setQuestionNumber] = useState<number>(0);
     const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
+    const [problem, setProblem] = useState<Problem>();
+    
     function onClickAnswer() {
-        navigate('/Answer', {state: {'selectedChoice': selectedChoice, 'questionNumber': questionNumber}})
+        navigate('/Answer', {state: {'explanation': problem!.answer.explanation,'question': problem!.question, 'selectedChoice': selectedChoice,'answerIndex': problem!.answer.choiceIndex, 'questionNumber': questionNumber}})
     }
     useEffect(() => {
         if (questionNumber == location.state.numberOfQuestion){
@@ -26,11 +36,22 @@ function Question() {
         
         // const form = new FormData();
         // form.append('genre', location.state.genre);
-        // const response = axios.post("http://localhost:3000/question", form)
-        // console.log(response)
-        // if (response.status !== 200) {
-        //     console.log(response)
-        // }
+        axios.post(`http://localhost:8888/problem/create?genre=${location.state.genre}`)
+        .then((res) => {
+            const problem = res.data[0];
+            setProblem(
+                {
+                    question: problem.question,
+                    choices: problem.choices,
+                    answer: {
+                        choiceIndex: problem.choice_index, 
+                        explanation: problem.explanation
+                    }
+                }
+            )
+
+        })
+        
     }, []);
     const handleChoiceSelect = (index: number) => {
         setSelectedChoice(index);
@@ -39,8 +60,8 @@ function Question() {
     };
     return (
         <div className="home_box">
-            <QuestionText question={"aaaaaaaaaaa"} number={questionNumber}/>
-            <QuestionChoice choices={["a","a","a","a"]} onChoiceSelect={handleChoiceSelect}/>
+            <QuestionText question={problem!.question} number={questionNumber}/>
+            <QuestionChoice choices={problem!.choices} onChoiceSelect={handleChoiceSelect}/>
 
             <Icon
                 onClick={onClickAnswer} 
