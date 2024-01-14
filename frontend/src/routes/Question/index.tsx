@@ -20,22 +20,22 @@ function Question() {
     const navigate = useNavigate();
     const location = useLocation();
     const beforeQuestionNumber = location.state.questionNumber;
-    const [questionNumber, setQuestionNumber] = useState<number>(0);
+    const numberOfQuestion = location.state.numberOfQuestion;
+    const [questionNumber, setQuestionNumber] = useState<number>(beforeQuestionNumber);
     const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
     const [problem, setProblem] = useState<Problem>();
     
     function onClickAnswer() {
-        navigate('/Answer', {state: {'problem': problem, 'questionNumber': questionNumber, 'selectedChoice': selectedChoice}})
+        navigate('/Answer', {state: {'problem': problem, 'questionNumber': questionNumber, 'selectedChoice': selectedChoice, 'numberOfQuestion': numberOfQuestion}})
     }
     useEffect(() => {
-        console.log(location.state.numberOfQuestion)
         if (questionNumber == location.state.numberOfQuestion){
             navigate('/completion')
         }
-        setQuestionNumber(beforeQuestionNumber + 1);
+        setQuestionNumber(questionNumber + 1);
+        console.log("numberOfQuestion:",location.state.numberOfQuestion)
+        console.log("questionNumber:", questionNumber)
         
-        // const form = new FormData();
-        // form.append('genre', location.state.genre);
         axios.post(`http://localhost:8888/problem/create?genre=${location.state.genre}`)
         .then((res) => {
             const problem = res.data[0];
@@ -57,8 +57,6 @@ function Question() {
     }, []);
     const handleChoiceSelect = (index: number) => {
         setSelectedChoice(index);
-        console.log("routes")
-        console.log(index)
     };
     return (
         <div className="home_box">

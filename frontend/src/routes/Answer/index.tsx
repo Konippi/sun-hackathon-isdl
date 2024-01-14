@@ -10,6 +10,7 @@ function Answer() {
     const problem: Problem = location.state.problem;
     const selectedChoice = location.state.selectedChoice;
     const questionNumber = location.state.questionNumber;
+    const numberOfQuestion = location.state.numberOfQuestion;
     const [answer, setAnswer] = useState('');
     const [answerColor, setAnswerColor] = useState("black");
     const [colorScheme, setColorScheme] = useState(["black","black","black","black"])
@@ -25,7 +26,7 @@ function Answer() {
     });
 
     function onClickNextQuestion() {
-        navigate('/question', {state: {'questionNumber': questionNumber}})
+        navigate('/question', {state: {'questionNumber': questionNumber, 'numberOfQuestion': numberOfQuestion}})
     }
 
     useEffect(() => {
