@@ -31,6 +31,11 @@ function Question() {
         //     console.log(response)
         // }
     }, []);
+    const handleChoiceSelect = (choice: string) => {
+        setSelectedChoice(choice);
+        console.log("routes")
+        console.log(choice)
+    };
     return (
         <div className="home_box">
             <QuestionText question={"aaaaaaaaaaa"} number={questionNumber}/>
