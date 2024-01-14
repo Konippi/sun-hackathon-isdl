@@ -20,6 +20,7 @@ function Answer() {
         <div className="home_box">
             <QuestionText question={"aaaaaaaaaaa"} number={questionNumber}/>
             <QuestionChoice choices={["a","a","a","a"]}/>
+            <Text>choice:{selectedChoice}</Text>
             <Text my={5} textAlign="left" fontSize='4xl' color="#000000">Explanation</Text> 
             <Box px={5} justifyContent='center' alignItems='center'>
                 <Text textAlign="center" fontSize='2xl' color="#000000">{message}</Text>

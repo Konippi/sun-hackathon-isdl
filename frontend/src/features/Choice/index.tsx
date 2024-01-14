@@ -4,7 +4,7 @@ import { Button, Text, VStack } from '@chakra-ui/react';
 
 type QuestionChoiceProps = {
   choices: string[];
-  onChoiceSelect: (choice: string) => void;
+  onChoiceSelect: (index: number) => void;
 };
 
 const QuestionChoice: React.FC<QuestionChoiceProps> = ({ choices, onChoiceSelect }) => {
@@ -18,7 +18,7 @@ const QuestionChoice: React.FC<QuestionChoiceProps> = ({ choices, onChoiceSelect
     return(
         <VStack spacing={4} align="center" pt={5}>
             {choices.map((choice, index) => (
-                <Button key={index} colorScheme="black" variant="outline" w="80%" borderRadius={30} onClick={() => onChoiceSelect(choice)}>
+                <Button key={index} colorScheme="black" variant="outline" w="80%" borderRadius={30} onClick={() => onChoiceSelect(index)}>
                     <Text w={250} textAlign={"start"}>{choice}</Text>
                 </Button>
             ))}
