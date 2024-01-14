@@ -1,4 +1,3 @@
-import "./Choice.css"
 //import React, {useState} from 'react';
 import { Button, Text, VStack } from '@chakra-ui/react';
 
@@ -18,8 +17,8 @@ const QuestionChoice: React.FC<QuestionChoiceProps> = ({ choices, onChoiceSelect
     return(
         <VStack spacing={4} align="center" pt={5}>
             {choices.map((choice, index) => (
-                <Button key={index} colorScheme="black" variant="outline" w="80%" borderRadius={30} onClick={() => onChoiceSelect(index)}>
-                    <Text w={250} textAlign={"start"}>{choice}</Text>
+                <Button maxH={110} h={"100%"} key={index} colorScheme="black" variant="outline" w="80%" borderRadius={30} whiteSpace="unset" onClick={() => onChoiceSelect(index)}>
+                    <Text textAlign={"start"} overflowWrap="break-word" margin={3}>{choice}</Text>
                 </Button>
             ))}
         </VStack>

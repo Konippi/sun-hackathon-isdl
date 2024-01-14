@@ -19,7 +19,7 @@ function Home() {
         <Box className="home_box" padding={4}>
             <Box my={10} justifyContent='center' alignItems='center'>
                 <Text textAlign="left" fontSize='2xl' color="#000000">Select genre</Text>  
-                <Input placeholder='Select genre' size='lg' onChange={e => setGenre(e.target.value)}/> 
+                <Input placeholder='Select genre (Ex. C++)' size='lg' onChange={e => setGenre(e.target.value)}/> 
                 {/* <Select placeholder='Select genre' onChange={e => setGenre(e.target.value)}>
                     <option value='Java'>Java</option>
                     <option value='Go'>Go</option>
