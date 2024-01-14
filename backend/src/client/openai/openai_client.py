@@ -26,5 +26,4 @@ class OpenAIClient:
             messages=[{"role": "user", "content": content}],
             n=1,
         )
-        print(type(res))
         return res
