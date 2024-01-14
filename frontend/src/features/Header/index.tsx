@@ -13,7 +13,7 @@ function Header() {
             <Container maxW="container.lg">
                 <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
                     <Heading as='h1' fontSize="2xl" cursor="pointer">
-                        ISDL-support
+                        Knowledge Q
                     </Heading>
                 </Flex>
             </Container>
