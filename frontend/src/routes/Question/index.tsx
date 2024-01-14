@@ -60,14 +60,13 @@ function Question() {
     };
     return (
         (problem == undefined) ? 
-        <Center h="100vh">
+        <Center h="88vh">
             <Spinner
             thickness='4px'
             speed='0.65s'
             emptyColor='gray.200'
             color='orange.500'
             size='xl'
-            
         /> 
         </Center>
         :
@@ -80,7 +79,7 @@ function Question() {
                 cursor="pointer"
                 position="fixed"
                 right={5}
-                bottom={16}
+                bottom={20}
                 as={HiArrowRight}
                 bgColor="blue.400"
                 color="white"
