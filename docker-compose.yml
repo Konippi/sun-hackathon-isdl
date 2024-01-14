@@ -1,5 +1,6 @@
 version: '3'
 services: 
+  # frontend
   frontend:
     container_name: sun-frontend
     build: ./frontend
@@ -10,7 +11,25 @@ services:
     ports:
       - 5173:5173
     volumes:
-      - ./frontend:/usr/src/app
+      - ./frontend:/sun-app
     command: sh -c 'yarn install && yarn dev'
-  
+    networks:
+      - sun-app-network
+  # backend
+  backend:
+    container_name: sun-backend
+    build: ./backend
+    environment:
+      - ENV=local
+    tty: true
+    stdin_open: true
+    ports:
+      - 8888:8888
+    volumes:
+      - ./backend:/sun-app
+    networks:
+      - sun-app-network
 
+networks:
+  sun-app-network:
+    driver: bridge
