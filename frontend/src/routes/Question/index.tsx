@@ -7,15 +7,16 @@ import QuestionText from "../../features/QuestionText";
 import QuestionChoice from "../../features/Choice";
 
 
+export type Problem = {
+    question: string,
+    choices: string[],
+    answer: {
+        choiceIndex: number,
+        explanation: string
+    }
+}
+
 function Question() {
-    type Problem = {
-        question: string,
-        choices: string[],
-        answer: {
-            choiceIndex: number,
-            explanation: string
-        }
-    } 
     const navigate = useNavigate();
     const location = useLocation();
     const beforeQuestionNumber = location.state.questionNumber;
