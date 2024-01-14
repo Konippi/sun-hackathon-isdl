@@ -29,8 +29,8 @@ function Question() {
     }
     useEffect(() => {
         console.log(location.state.numberOfQuestion)
-        if (questionNumber == location.state.genre){
-            navigate('/Completion')
+        if (questionNumber == location.state.numberOfQuestion){
+            navigate('/completion')
         }
         setQuestionNumber(beforeQuestionNumber + 1);
         
