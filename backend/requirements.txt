@@ -1,0 +1,19 @@
+# formatter
+black
+
+# linter
+flake8
+
+# type checker
+mypy
+
+# sort imports
+isort
+
+# python packages
+requests
+fastapi
+python-dotenv
+openai
+uvicorn
+pydantic-settings
