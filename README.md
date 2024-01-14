@@ -1,16 +1,12 @@
 # Sun-Hackathon-ISDL
 
-## Setup
+## Initialization
+### Backend
+1. Move to `/backend` directory.
+2. Create `.env.local` by copying `.env.sample` and fill out variables by asking team members to share what's inside.
 
-### Frontend
-Execute the following command in `frontend` directory.
-
-1. install node modules
+## How to Run
+- Execute the following command to run backend and frontend containers.
 ```bash
-npm i　
-```
-
-2. Run in local environment.
-```bash
-npm dev
+docker compose up -d
 ```
