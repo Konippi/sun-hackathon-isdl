@@ -14,7 +14,7 @@ function Question() {
     const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
     // const [questionNumber, setQuestionNumber] = useState(0);
     function onClickAnswer() {
-        navigate('/Answer', {state: {}})
+        navigate('/Answer', {state: {selectedChoice}})
     }
     useEffect(() => {
         questionNumber.current = location.state.questionNumber + 1;
