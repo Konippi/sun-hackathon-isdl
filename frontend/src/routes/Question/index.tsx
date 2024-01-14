@@ -12,7 +12,7 @@ function Question() {
     const location = useLocation();
     const beforeQuestionNumber = location.state.questionNumber;
     const [questionNumber, setQuestionNumber] = useState<number>(0)
-    const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
+    const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
     function onClickAnswer() {
         navigate('/Answer', {state: {'selectedChoice': selectedChoice, 'questionNumber': questionNumber}})
     }
@@ -32,10 +32,10 @@ function Question() {
         //     console.log(response)
         // }
     }, []);
-    const handleChoiceSelect = (choice: string) => {
-        setSelectedChoice(choice);
+    const handleChoiceSelect = (index: number) => {
+        setSelectedChoice(index);
         console.log("routes")
-        console.log(choice)
+        console.log(index)
     };
     return (
         <div className="home_box">
