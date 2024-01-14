@@ -6,12 +6,12 @@ import { HiArrowRight } from "react-icons/hi";
 function Answer() {
     const navigate = useNavigate()
     const location = useLocation();
-    const question = location.state.question;
-    const choices = ["a","a","a","a"];
+    const question: string = location.state.problem.question;
+    const choices: string[] = location.state.problem.choices;
     const selectedChoice = location.state.selectedChoice;
-    const answerIndex = location.state.answerIndex;
+    const answerIndex: number = location.state.problem.answer.answerIndex;
     const questionNumber = location.state.questionNumber;
-    const explanation = location.state.explanation;
+    const explanation: string = location.state.problem.answer.explanation;
     const [answer, setAnswer] = useState('');
     const [answerColor, setAnswerColor] = useState("black");
     const [colorScheme, setColorScheme] = useState(["black","black","black","black"])
